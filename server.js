@@ -81,7 +81,16 @@ function listjobsHandlerIdGET(req, res) {
     res.render(`details`, { data: results.rows[0] });
   });
 }
-function listjobsHandlerIdPUT(req, res) {}
+function listjobsHandlerIdPUT(req, res) {
+  const { title, url, description, company, location } = req.body;
+  let URLparamas = req.params.id;
+  let SQL = `UPDATE jobs SET title=$1, url=$2, description=$3, company=$4, location=$5 WHERE id=$6;`;
+  let safeValues = [title, url, description, company, location, URLparamas];
+  client.query(SQL, safeValues).then((results) => {
+    res.redirect(`/mylist/${URLparamas}`);
+    // res.render(`details`, { data: results.rows[0] });
+  });
+}
 function listjobsHandlerIdDELETE(req, res) {
   let URLparamas = req.params.id;
   let SQL = `DELETE FROM jobs WHERE id=$1;`;

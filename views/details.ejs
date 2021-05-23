@@ -21,6 +21,18 @@
         <form action="/mylist/<%= data.id %>?_method=delete" method="post">
           <input type="submit" value="delete" />
         </form>
+        <form action="/mylist/<%= data.id %>?_method=put" method="post">
+          <input type="text" name="title" value="<%= data.title %>" />
+          <input type="text" name="company" value="<%= data.company %>" />
+          <input type="text" name="location" value="<%= data.location %>" />
+          <input type="text" name="url" value="<%= data.url %>" />
+          <input
+            type="text"
+            name="description"
+            value="<%= data.description %>"
+          />
+          <input type="submit" value="update" />
+        </form>
       </div>
     </div>
   </body>
