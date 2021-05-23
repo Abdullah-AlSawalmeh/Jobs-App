@@ -71,3 +71,11 @@ ul {
 .hide {
   display: none;
 }
+
+.h1__page {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
+}
