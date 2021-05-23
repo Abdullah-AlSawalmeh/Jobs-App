@@ -21,6 +21,9 @@ server.get("/search", searchHandlerGET);
 server.get("/results", resultsHandlerGET);
 server.get("/mylist", listjobsHandlerGET);
 server.post("/mylist", listjobsHandlerPOST);
+server.get("/mylist/:id", listjobsHandlerIdGET);
+server.put("/mylist/:id", listjobsHandlerIdPUT);
+server.delete("/mylist/:id", listjobsHandlerIdDELETE);
 
 function Job(data) {
   this.url = data.url;
@@ -65,6 +68,27 @@ function listjobsHandlerPOST(req, res) {
   let safeValues = [title, url, description, company, location];
   client.query(SQL, safeValues).then(() => {
     res.redirect("/mylist");
+  });
+}
+function listjobsHandlerIdGET(req, res) {
+  //   console.log("hlo");
+  let URLparamas = req.params.id;
+  //   console.log(URLparamas);
+  let SQL = `SELECT * FROM jobs WHERE id=$1;`;
+  let safeValues = [URLparamas];
+  client.query(SQL, safeValues).then((results) => {
+    // res.redirect(`/mylist/${URLparamas}`, { data: results.rows[0] });
+    res.render(`details`, { data: results.rows[0] });
+  });
+}
+function listjobsHandlerIdPUT(req, res) {}
+function listjobsHandlerIdDELETE(req, res) {
+  let URLparamas = req.params.id;
+  let SQL = `DELETE FROM jobs WHERE id=$1;`;
+  let safeValues = [URLparamas];
+  client.query(SQL, safeValues).then(() => {
+    res.redirect(`/mylist`);
+    // res.render(`details`, { data: results.rows[0] });
   });
 }
 
