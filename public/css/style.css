@@ -1,0 +1,40 @@
+header {
+    background: black;
+
+}
+a {
+    list-style: none;
+    text-decoration: none;
+    color:white;
+    font-size: 20px;
+
+}
+
+ul  {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.homepage__main {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap:20px
+}
+
+.homepage__job {
+    width: 40%;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.homepage__job h1 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.url{
+    color: blue;
+}
