@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>results</title>
+    <title>Homepage</title>
   </head>
   <body>
     <%- include('./layouts/header') %>
@@ -18,21 +18,8 @@
         <h2>Company: <%= element.company %></h2>
         <h2>Location: <%= element.location %></h2>
         <h2 class="url">Url: <%= element.url %></h2>
-        <form action="/mylist" method="post">
-          <input type="hidden" name="title" value="<%= element.title %>" />
-          <input type="hidden" name="company" value="<%= element.company %>" />
-          <input
-            type="hidden"
-            name="location"
-            value="<%= element.location %>"
-          />
-          <input type="hidden" name="url" value="<%= element.url %>" />
-          <input
-            type="hidden"
-            name="description"
-            value="<%= element.description %>"
-          />
-          <input type="submit" value="Add To My List" />
+        <form action="/mylist/<%= element.id %>" method="GET">
+          <input type="submit" value="See details" />
         </form>
       </div>
       <% }) %>

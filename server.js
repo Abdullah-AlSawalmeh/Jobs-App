@@ -20,7 +20,7 @@ server.get("/", mainHandler);
 server.get("/search", searchHandlerGET);
 server.get("/results", resultsHandlerGET);
 server.get("/mylist", listjobsHandlerGET);
-server.post("/mylist", listjobsHandlerGET);
+server.post("/mylist", listjobsHandlerPOST);
 
 function Job(data) {
   this.url = data.url;
@@ -51,7 +51,22 @@ function resultsHandlerGET(req, res) {
   });
 }
 
-function listjobsHandlerGET(req, res) {}
+function listjobsHandlerGET(req, res) {
+  let SQL = `SELECT * FROM jobs;`;
+  client.query(SQL).then((results) => {
+    res.render("mylist", { data: results.rows });
+  });
+}
+function listjobsHandlerPOST(req, res) {
+  //   console.log("sdf");
+  const { title, url, description, company, location } = req.body;
+  //   console.log(title, url, description, company, location);
+  let SQL = `INSERT INTO jobs (title,url,description,company,location) VALUES ($1,$2,$3,$4,$5);`;
+  let safeValues = [title, url, description, company, location];
+  client.query(SQL, safeValues).then(() => {
+    res.redirect("/mylist");
+  });
+}
 
 client.connect().then(() => {
   server.listen(PORT, console.log(`Server is listining to PORT : ${PORT}`));
