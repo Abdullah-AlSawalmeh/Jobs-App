@@ -33,6 +33,11 @@ ul {
   font-weight: bold;
   margin-bottom: 10px;
 }
+.homepage__job p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
 
 .url {
   color: blue;
@@ -43,4 +48,26 @@ ul {
   justify-content: center;
   align-items: center;
   align-self: center;
+  align-content: center;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  gap: 30px;
+}
+
+.update {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hide {
+  display: none;
 }

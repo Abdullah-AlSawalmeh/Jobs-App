@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>Detail</title>
   </head>
   <body>
@@ -18,22 +18,39 @@
         <h2>Location: <%= data.location %></h2>
         <h2 class="url">Url: <%= data.url %></h2>
         <p>Description: <%= data.description %></p>
-        <form action="/mylist/<%= data.id %>?_method=delete" method="post">
-          <input type="submit" value="delete" />
-        </form>
-        <form action="/mylist/<%= data.id %>?_method=put" method="post">
-          <input type="text" name="title" value="<%= data.title %>" />
-          <input type="text" name="company" value="<%= data.company %>" />
-          <input type="text" name="location" value="<%= data.location %>" />
-          <input type="text" name="url" value="<%= data.url %>" />
-          <input
-            type="text"
-            name="description"
-            value="<%= data.description %>"
-          />
-          <input type="submit" value="update" />
-        </form>
+        <div class="forms">
+          <form action="/mylist/<%= data.id %>?_method=delete" method="post">
+            <input type="submit" value="delete" />
+          </form>
+          <button id="update">Update</button>
+          <form
+            class="update hide"
+            id="updateform"
+            action="/mylist/<%= data.id %>?_method=put"
+            method="post"
+          >
+            <input type="text" name="title" value="<%= data.title %>" />
+            <input type="text" name="company" value="<%= data.company %>" />
+            <input type="text" name="location" value="<%= data.location %>" />
+            <input type="text" name="url" value="<%= data.url %>" />
+            <input
+              type="text"
+              name="description"
+              value="<%= data.description %>"
+            />
+            <input type="submit" value="update" />
+          </form>
+        </div>
       </div>
     </div>
+    <script>
+      let update = document.getElementById("update");
+      update.addEventListener("click", updateHandler);
+      function updateHandler(e) {
+        let updateform = document.getElementById("updateform");
+        updateform.classList.remove("hide");
+        update.classList.add("hide");
+      }
+    </script>
   </body>
 </html>
